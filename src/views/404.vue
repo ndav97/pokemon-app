@@ -13,17 +13,18 @@
 </template>
 
 <script>
+//Components
 import ButtonCmp from "../components/buttonCmp.vue";
+
+//Mixin
+import MixinInit from "@/mixins/mixin_init.js";
+
 export default {
   name: "404",
   components: {
     ButtonCmp,
   },
-  methods: {
-    toHome() {
-      this.$router.push({ name: "Home" });
-    },
-  },
+  mixins: [MixinInit],
 };
 </script>
 

@@ -5,25 +5,13 @@
         placeholder="Search"
         icon="/icons/lupa.svg"
         v-model="query"
-        @keypress.enter="filterPokemons"
+        @keypress="filterPokemons"
       />
     </div>
-    <div class="list" v-if="option === 1">
+    <div class="list">
       <div v-if="pokemons">
         <pokemon-item
-          v-for="pokemon in pokemonsFiltered"
-          :name="pokemon.name"
-          :key="pokemon.name"
-          :isFavorite="pokemon.isFavorite"
-          :url="pokemon.url"
-          @change-favorite-status="changeFavoriteStatus(pokemon)"
-        />
-      </div>
-    </div>
-    <div class="list-favorites" v-else>
-      <div v-if="pokemons">
-        <pokemon-item
-          v-for="pokemon in favoritePokemons"
+          v-for="pokemon in option === 1 ? pokemonsFiltered : favoritePokemons"
           :name="pokemon.name"
           :key="pokemon.name"
           :isFavorite="pokemon.isFavorite"
@@ -37,13 +25,13 @@
         <button-cmp
           icon="/icons/listIcon.svg"
           text="All"
-          :disabled="option != 1"
+          :disabled="option !== 1"
           @click="option = 1"
         />
         <button-cmp
           icon="/icons/star.svg"
           text="Favorite"
-          :disabled="option != 2"
+          :disabled="option !== 2"
           @click="option = 2"
         />
       </div>
@@ -52,9 +40,11 @@
 </template>
 
 <script>
+//Components
 import ButtonCmp from "../components/buttonCmp.vue";
 import InputCmp from "../components/inputCmp.vue";
 import PokemonItem from "../components/List/pokemonItem.vue";
+
 export default {
   name: "List",
   components: {
@@ -86,6 +76,7 @@ export default {
     this.getPokemons();
   },
   methods: {
+    //Get the pokemon List
     async getPokemons() {
       try {
         const res = await this.axios.get(
@@ -105,16 +96,14 @@ export default {
       }
     },
 
+    //Filter the pokemon list
     filterPokemons() {
       this.pokemonsFiltered = this.pokemons.filter((pk) => {
         if (pk.name.indexOf(this.query) > -1) return pk;
       });
     },
 
-    toHome() {
-      this.$router.push({ name: "Home" });
-    },
-
+    //Change the favorite status of a pokemon
     changeFavoriteStatus(pokemon) {
       pokemon.isFavorite = !pokemon.isFavorite;
     },

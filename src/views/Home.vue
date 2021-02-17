@@ -24,7 +24,7 @@
 import ButtonCmp from "../components/buttonCmp.vue";
 
 export default {
-  name: "HelloWorld",
+  name: "Home",
   components: {
     ButtonCmp,
   },
