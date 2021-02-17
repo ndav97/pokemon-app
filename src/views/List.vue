@@ -107,7 +107,6 @@ export default {
 
     filterPokemons() {
       this.pokemonsFiltered = this.pokemons.filter((pk) => {
-        console.log(pk.name.indexOf(this.query));
         if (pk.name.indexOf(this.query) > -1) return pk;
       });
     },

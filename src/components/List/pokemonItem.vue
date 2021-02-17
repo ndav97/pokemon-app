@@ -49,7 +49,6 @@ export default {
       this.$emit("changeFavoriteStatus");
     },
     seeDetails() {
-      console.log("clicked");
       this.showModal = true;
     },
   },
