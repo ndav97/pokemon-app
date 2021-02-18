@@ -13,7 +13,9 @@
 </template>
 
 <script>
+//Components
 import pokemonDetails from "./pokemonDetails.vue";
+
 export default {
   components: { pokemonDetails },
   name: "pokemonItem",
@@ -45,9 +47,12 @@ export default {
     },
   },
   methods: {
+    //Emit change favorite status
     changeFavoriteStatus() {
       this.$emit("changeFavoriteStatus");
     },
+
+    //Show the detail modal
     seeDetails() {
       this.showModal = true;
     },

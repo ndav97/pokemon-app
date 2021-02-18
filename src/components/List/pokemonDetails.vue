@@ -35,7 +35,9 @@
 </template>
 
 <script>
+//Components
 import buttonCmp from "../buttonCmp.vue";
+
 export default {
   components: { buttonCmp },
   name: "pokemonDetails",
@@ -76,6 +78,7 @@ export default {
     this.getDetails();
   },
   methods: {
+    //Get the pokemon detail
     async getDetails() {
       try {
         const res = await this.axios.get(this.url);
@@ -86,13 +89,13 @@ export default {
         console.dir(error);
       }
     },
+
+    //Copy the pokemon data to the clipboard
     sharePokemon() {
       const el = document.createElement("textarea");
       el.value = `${this.pokemon.name} - ${this.type}`;
       el.setAttribute("readonly", "");
       el.setAttribute("display", "none");
-      // el.style.position = 'absolute';
-      // el.style.left = '-9999px';
       document.body.appendChild(el);
       el.select();
       document.execCommand("copy");

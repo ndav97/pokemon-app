@@ -21,6 +21,7 @@
 </template>
 
 <script>
+//Components
 import ButtonCmp from "../components/buttonCmp.vue";
 
 export default {
@@ -29,6 +30,7 @@ export default {
     ButtonCmp,
   },
   methods: {
+    //Redirect to list page
     toList() {
       this.$router.push({ name: "List" });
     },
